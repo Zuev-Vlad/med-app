@@ -6,6 +6,7 @@ import { ProductAction } from "../../Actions/ProductAction";
 import { AddNewProductForm } from "../../Component/Forms/AddNewProductForm/AddNewProductForm";
 import { PageTitle } from "../../Component/PageElement/PageTitle/PageTitle";
 import { ProductTable } from "../../Component/ProductTable/ProductTable";
+import { SearchProduct } from "../../Component/SearchProduct/SearchProduct";
 import { PageWrapper } from "../../Component/Wrappers/PageWrapper/PageWrapper";
 import { SidebarWrapper } from "../../Component/Wrappers/SidebarWrapper/SidebarWrapper";
 
@@ -15,6 +16,7 @@ export const MedicalListPage: React.FC = () => {
     const products = productAction.productState
     const modalAction = new ModalAction()
 
+
     const addNewProduct = () => {
         modalAction
             .setTitle((<h2>Добавить новый товар</h2>))
@@ -22,6 +24,11 @@ export const MedicalListPage: React.FC = () => {
             .setShowFooter(false)
             .setOpen(true)
     }
+
+    React.useEffect(() => {
+        productAction.getProducts()
+    }, [])
+
     return (
         <PageWrapper>
 
@@ -43,11 +50,12 @@ export const MedicalListPage: React.FC = () => {
 
                 <SidebarWrapper.ContentCol>
                     <PageTitle title="Мои лекарства" />
-                    <div className="text-end">
-                        <Button variant="primary" onClick={addNewProduct}>Добавить препарат</Button>
+                    <div className="d-flex justify-content-between">
+                        <Button variant="primary" className="me-3" onClick={addNewProduct}>Добавить препарат</Button>
+                        <SearchProduct />
                     </div>
                     <div className="py-3">
-                        <ProductTable onClickDelete={(id) => productAction.removeProduct(id)} arrayProduct={products} />
+                        <ProductTable onClickDelete={(id) => productAction.deleteProduct([id])} arrayProduct={products} />
                     </div>
                 </SidebarWrapper.ContentCol>
 

@@ -18,7 +18,7 @@ export const AddNewProductForm = () => {
             count: Number(fd.get('count')) || 1,
             description: String(fd.get('description')) || ''
         }
-        productAction.addProduct(newProduct)
+        productAction.addedProduct(newProduct)
         modalAction.setOpen(false).reset()
     }
 

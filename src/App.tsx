@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { AppModal } from './Component/AppModal/AppModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { AppLoader } from './Component/AppLoader/AppLoader';
 
 
 export const App: React.FC = () => {
@@ -12,12 +13,14 @@ export const App: React.FC = () => {
     <RecoilRoot>
 
       <BrowserRouter>
-        
-          <AppRouter />
-          
+
+        <AppRouter />
+
       </BrowserRouter>
 
       <AppModal />
+
+      <AppLoader />
 
     </RecoilRoot>
   );
