@@ -55,7 +55,7 @@ export const MedicalListPage: React.FC = () => {
                     <PageTitle title="Мои лекарства" />
                     <div className="d-flex justify-content-between">
                         <Button variant="primary" className="me-3" onClick={addNewProduct}>Добавить препарат</Button>
-                        <SearchProduct onClickSearch={(str:string = '') => setSearchProductString(str || '')}/>
+                        <SearchProduct onClickSearch={(str: string = '') => setSearchProductString(str || '')} />
                     </div>
                     <div className="py-3">
                         <ProductTable onClickDelete={(id) => productAction.deleteProduct([id])} arrayProduct={filterProducts} />

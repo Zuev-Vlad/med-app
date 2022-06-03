@@ -5,7 +5,7 @@ export class ActionsModel {
 
     private request(url: RequestInfo, params?: RequestInit) {
         const headers = params?.headers;
-        const p = { ...params, headers: { ...headers, "Content-Type": "application/json" } }
+        const p = { ...params, headers: { ...headers, "mode": 'no-cors', "Content-Type": "application/json", "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization" } }
         return fetch(url, p)
     }
 
@@ -17,15 +17,16 @@ export class ActionsModel {
         return alert(textError)
     }
     async GET(url: string, body: BodyInit = "") {
-        return this.request(url, { body });
+        return fetch(url, { body: body });
     }
     async POST(url: string, body: BodyInit = "") {
-        return this.request(url, { method: 'POST', body });
+        console.log({url, body})
+        return fetch(url, { method: 'POST', body: body });
     }
     async PUT(url: string, body: BodyInit = "") {
-        return this.request(url, { method: 'PUT', body });
+        return fetch(url, { method: 'PUT', body: body });
     }
     async DELETE(url: string, body: BodyInit = "") {
-        return this.request(url, { method: 'DELETE', body });
+        return fetch(url, { method: 'DELETE', body: body });
     }
 }
