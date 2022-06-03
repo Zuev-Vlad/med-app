@@ -3,6 +3,12 @@ import { useSetRecoilState } from 'recoil';
 export class ActionsModel {
     private setAppLoading = useSetRecoilState(loaderAtom)
 
+    private request(url: RequestInfo, params?: RequestInit) {
+        const headers = params?.headers;
+        const p = { ...params, headers: { ...headers, "Content-Type": "application/json" } }
+        return fetch(url, p)
+    }
+
     protected loading(flag: boolean) {
         this.setAppLoading((old) => ({ ...old, isLoading: flag }))
     }
@@ -11,15 +17,15 @@ export class ActionsModel {
         return alert(textError)
     }
     async GET(url: string, body: BodyInit = "") {
-        return fetch(url, { body });
+        return this.request(url, { body });
     }
     async POST(url: string, body: BodyInit = "") {
-        return fetch(url, { method: 'POST', body });
+        return this.request(url, { method: 'POST', body });
     }
     async PUT(url: string, body: BodyInit = "") {
-        return fetch(url, {method: 'PUT', body });
+        return this.request(url, { method: 'PUT', body });
     }
     async DELETE(url: string, body: BodyInit = "") {
-        return fetch(url, { method: 'DELETE', body });
+        return this.request(url, { method: 'DELETE', body });
     }
 }
