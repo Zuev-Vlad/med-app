@@ -1,3 +1,4 @@
+import { productsSearchSelector } from './../Recoil/Product/productsSearchSelector';
 import { ActionsModel } from './ActionsModel';
 import { loaderAtom, LoaderAtomProps } from './../Recoil/Loader/loaderAtom';
 import { API_PATH } from './../Constants/ApiPath';
@@ -8,6 +9,7 @@ import { ProductInterface, productsAtom } from './../Recoil/Product/productsAtom
 
 export class ProductAction extends ActionsModel {
     public productState = useRecoilValue(productsAtom)
+    public filterProductState = useRecoilValue(productsSearchSelector)
     private setState = useSetRecoilState(productsAtom)
     private userData = useRecoilValue(userAtom)
 

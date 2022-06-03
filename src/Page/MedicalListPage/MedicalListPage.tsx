@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Button, Nav } from "react-bootstrap";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { ModalAction } from "../../Actions/ModalAction";
 import { ProductAction } from "../../Actions/ProductAction";
 import { AddNewProductForm } from "../../Component/Forms/AddNewProductForm/AddNewProductForm";
@@ -9,13 +9,16 @@ import { ProductTable } from "../../Component/ProductTable/ProductTable";
 import { SearchProduct } from "../../Component/SearchProduct/SearchProduct";
 import { PageWrapper } from "../../Component/Wrappers/PageWrapper/PageWrapper";
 import { SidebarWrapper } from "../../Component/Wrappers/SidebarWrapper/SidebarWrapper";
+import { searchStringProductAtom } from "../../Recoil/SearchProduct/searchStringProductAtom";
 
 
 export const MedicalListPage: React.FC = () => {
     const productAction = new ProductAction()
     const products = productAction.productState
+    const filterProducts = productAction.filterProductState
     const modalAction = new ModalAction()
 
+    const setSearchProductString = useSetRecoilState(searchStringProductAtom);
 
     const addNewProduct = () => {
         modalAction
@@ -52,10 +55,10 @@ export const MedicalListPage: React.FC = () => {
                     <PageTitle title="Мои лекарства" />
                     <div className="d-flex justify-content-between">
                         <Button variant="primary" className="me-3" onClick={addNewProduct}>Добавить препарат</Button>
-                        <SearchProduct />
+                        <SearchProduct onClickSearch={(str:string = '') => setSearchProductString(str || '')}/>
                     </div>
                     <div className="py-3">
-                        <ProductTable onClickDelete={(id) => productAction.deleteProduct([id])} arrayProduct={products} />
+                        <ProductTable onClickDelete={(id) => productAction.deleteProduct([id])} arrayProduct={filterProducts} />
                     </div>
                 </SidebarWrapper.ContentCol>
 
