@@ -51,7 +51,8 @@ export class ProductAction extends ActionsModel {
         } catch (e) {
             this.showError('Возникла серьезная ошибка при отправке запроса!')
         }
-        ids.map(id => this.removeProduct(id))
+        // ids.map(id => this.removeProduct(id))
+        this.getProducts()
     }
 
     async addedProduct(product: ProductInterface) {
@@ -65,7 +66,8 @@ export class ProductAction extends ActionsModel {
         } catch (e) {
             this.showError('Возникла серьезная ошибка при отправке запроса!')
         }
-        this.addProduct(product)
+        // this.addProduct(product)
+        this.getProducts()
     }
 
 }

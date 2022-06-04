@@ -14,11 +14,12 @@ export const AddNewProductForm = () => {
         const fd = new FormData(e?.target as HTMLFormElement)
 
 
-        const newProduct: any = {
+        const newProduct: ProductInterface = {
             id: String(uuidv4()),
             name: String(fd.get('name')) || '',
             count: Number(fd.get('count')) || 1,
-            description: String(fd.get('description')) || ''
+            description: String(fd.get('description')) || '',
+            expirationDate: String(fd.get("expirationDate") || '')
         }
         productAction.addedProduct(newProduct)
         modalAction.setOpen(false).reset()
@@ -31,11 +32,17 @@ export const AddNewProductForm = () => {
                 <Form.Control type="text" name="name" required placeholder="Например: Анальгин" />
             </Form.Group>
 
-            <Form.Group as={Col}>
-                <Form.Label>Кол-во</Form.Label>
-                <Form.Control type="number" name="count" required placeholder="1" />
-            </Form.Group>
+            <Row>
+                <Form.Group as={Col}>
+                    <Form.Label>Кол-во</Form.Label>
+                    <Form.Control type="number" name="count" required placeholder="1" />
+                </Form.Group>
 
+                <Form.Group as={Col}>
+                    <Form.Label>Годен до</Form.Label>
+                    <Form.Control type="date" name="expirationDate" required placeholder="1" />
+                </Form.Group>
+            </Row>
             <Form.Group>
                 <Form.Label>Описание</Form.Label>
                 <Form.Control as="textarea" name="description" rows={3} />
