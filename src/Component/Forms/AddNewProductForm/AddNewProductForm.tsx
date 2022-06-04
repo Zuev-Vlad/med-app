@@ -3,6 +3,7 @@ import { Button, Col, Form, Row } from 'react-bootstrap'
 import { ModalAction } from '../../../Actions/ModalAction'
 import { ProductAction } from '../../../Actions/ProductAction'
 import { ProductInterface } from '../../../Recoil/Product/productsAtom'
+import { v4 as uuidv4 } from 'uuid';
 
 export const AddNewProductForm = () => {
     const productAction = new ProductAction()
@@ -14,7 +15,7 @@ export const AddNewProductForm = () => {
 
 
         const newProduct: any = {
-            // id: String(uuidv4()),
+            id: String(uuidv4()),
             name: String(fd.get('name')) || '',
             count: Number(fd.get('count')) || 1,
             description: String(fd.get('description')) || ''
