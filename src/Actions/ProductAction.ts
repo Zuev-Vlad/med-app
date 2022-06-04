@@ -33,8 +33,9 @@ export class ProductAction extends ActionsModel {
             if (!resp?.ok) {
                 return this.showError('Сервер ответил ошибкой! Посмотрите консоль!')
             }
-            const product = await resp.json() as ProductInterface[];
-            this.setState([...product])
+            const rjson = await resp.json() as any;
+            const product = rjson?.medicine as ProductInterface[]
+            if (product) this.setState([...product])
             this.loading(false)
         } catch (e) { this.showError('Возникла серьезная ошибка при отправке запроса!') }
     }
