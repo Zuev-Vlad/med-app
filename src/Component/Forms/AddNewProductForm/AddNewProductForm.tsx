@@ -12,8 +12,9 @@ export const AddNewProductForm = () => {
         e.preventDefault()
         const fd = new FormData(e?.target as HTMLFormElement)
 
-        const newProduct: ProductInterface = {
-            id: String(Date.now()),
+
+        const newProduct: any = {
+            // id: String(uuidv4()),
             name: String(fd.get('name')) || '',
             count: Number(fd.get('count')) || 1,
             description: String(fd.get('description')) || ''
