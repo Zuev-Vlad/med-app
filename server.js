@@ -16,17 +16,16 @@ app.get('/api/userinfo', cors(), (req, res) => {
 })
 
 app.post('/api/userinfo', (req, res) => {
-    return res.send(JSON.stringify({
-        "email": "gandzha@ya.com",
-        "medicine": [
-            {
-                "name": "Инфо",
-                "count": "3",
-                "description": "Мазь от заражений",
-                "expirationDate": "2023-09-11"
-            }
-        ]
-    }))
+    return res.send(JSON.stringify([
+        {
+            "id": "38b2bd58-658b-4ef7-b68d-53e1119246c9",
+            "name": "Левомеколь",
+            "count": 3,
+            "description": "Мазь от заражений",
+            "expirationDate": "2023-09-11",
+            "userInfo": null
+        }
+    ]))
 })
 
 app.listen(port, () => {
