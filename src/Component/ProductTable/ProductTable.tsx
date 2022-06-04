@@ -30,7 +30,7 @@ export const ProductTable = ({ arrayProduct, onClickDelete = () => ({}) }: Produ
                         <td data-name='Название' className="text-center">{product.name}</td>
                         <td data-name='Кол-во' className="text-center">{product.count}</td>
                         <td data-name='Описание'>{product.description?.substr(0, 50)}</td>
-                        <td data-name='Срок годности'>до {product?.expiryDate ? new Date(product?.expiryDate || '').toLocaleDateString() : '--'}</td>
+                        <td data-name='Срок годности'>до {product?.expirationDate ? new Date(product?.expirationDate || '').toLocaleDateString() : '--'}</td>
                         <td data-name='Кнопка купить'>
                             <div className="d-flex w-100 justify-content-center">
                                 <Button className='me-2' size="sm" variant="success">Купить</Button>
