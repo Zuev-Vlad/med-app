@@ -17,16 +17,15 @@ export class ActionsModel {
         return alert(textError)
     }
     async GET(url: string, body: BodyInit = "") {
-        return fetch(url, { body: body });
+        return this.request(url, { body: body });
     }
     async POST(url: string, body: BodyInit = "") {
-        console.log({url, body})
-        return fetch(url, { method: 'POST', body: body });
+        return this.request(url, { method: 'POST', body: body});
     }
     async PUT(url: string, body: BodyInit = "") {
-        return fetch(url, { method: 'PUT', body: body });
+        return this.request(url, { method: 'PUT', body: body });
     }
     async DELETE(url: string, body: BodyInit = "") {
-        return fetch(url, { method: 'DELETE', body: body });
+        return this.request(url, { method: 'DELETE', body: body });
     }
 }
